@@ -1,0 +1,134 @@
+@charset "utf-8";
+@import "_base.scss";
+$orange:#f49f4f;
+.wrap{
+    // visibility: hidden;
+}
+html,body{
+    width: 100%;
+    max-width: 750px;  
+    margin: 0 auto;
+    position: relative;
+    background: #f5f5f5;
+}
+img{
+    display: block;
+    width: 100%;
+}
+.hide{
+    display: none;
+}
+[v-cloak]{
+    display: none;
+}
+
+.index_page{
+    .panel{
+        background: #fff;
+        margin-bottom:20px;
+        .title{
+            padding: REM(25) 0;
+            img{
+                display: block;
+                margin: 0 auto;
+                width: REM(265);
+            }
+        }
+        .flexBox{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: REM(10) 0 REM(30);
+            div{
+                flex-grow: 1;
+                text-align: center;
+                img{
+                    width: REM(129);
+                    margin: 0 auto;
+                    display: block;
+                }
+                p{
+                    padding-top: 8px;
+                    font-size: REM(28);
+                    color: #515151;
+                }
+            }
+        }
+    }
+    .panel1{
+        margin-top: 10px;
+    }
+    .panel2{
+        .flexBox{
+            padding: REM(30) 0;
+            P{
+                font-size: REM(24);
+                color: #666666;
+            }
+        }
+    }
+    .panel4{
+        .flexBox{
+            flex-wrap: wrap;
+            div{
+                img{
+                    width: REM(160);
+                    height: REM(160);
+                    
+                }
+                p{
+                    margin-top:REMTWO(80);
+                }
+            }
+            .item{
+                flex-basis: 50%;
+                display: flex;
+                height: REM(160);
+                align-items: center;
+                justify-content: space-between;
+                p{
+                    text-align: center;
+                    flex-grow: 1;
+                    margin-top: 0;
+                }
+                &:nth-child(1){
+                    img{
+                        margin: 0;
+                        margin-right: REM(20);
+                    }
+                }
+                
+            }
+        }
+    }
+    .panel5{
+        
+        .flexBox{
+            flex-wrap: wrap;
+            padding: 0;
+            &>div{
+                flex-basis: 25%;
+                box-sizing: border-box;
+                border-left: 1px #fff solid;
+                border-bottom: 1px #fff solid;
+                position: relative;
+                p{
+                    position: absolute;
+                    top: 50%;
+                    left: 0;
+                    width: 100%;
+                    text-align: center;
+                    font-size: REM(30);
+                    height: REM(36);
+                    line-height: REM(36);
+                    margin-top: REMTWO(36);
+                    padding-top: 0;
+                    color: #fff;
+                }
+                img{
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

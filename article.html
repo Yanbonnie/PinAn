@@ -15,7 +15,13 @@
     <div class="article" id="article">
         <div class="articleList">
             <ul>
-                <li>
+                <li v-for="(item,index) in article" :key="index">
+                    <a :href="item.url">
+                        <h3 class="shengl">{{item.title}}</h3>
+                        <p><span>{{item.time}}</span></p>
+                    </a>
+                </li>
+                <!-- <li>
                     <h3 class="shengl">该剧讲述了高智商、高学历的化学工程师吕云鹏，因亲情触发，只身前往西南边陲，在禁毒干警的保驾护航下</h3>
                     <p><span>2018-03-04</span></p>
                 </li>
@@ -30,13 +36,34 @@
                 <li>
                     <h3 class="shengl">该剧讲述了高智商、高学历的化学工程师吕云鹏，因亲情触发，只身前往西南边陲，在禁毒干警的保驾护航下</h3>
                     <p><span>2018-03-04</span></p>
-                </li>
-                <li>
-                    <h3 class="shengl">该剧讲述了高智商、高学历的化学工程师吕云鹏，因亲情触发，只身前往西南边陲，在禁毒干警的保驾护航下</h3>
-                    <p><span>2018-03-04</span></p>
-                </li>
+                </li> -->
             </ul>
         </div>
+        <!-- 加载中 -->
+        <div id="loadingToast" v-show="loading.status">
+                <div class="weui-mask_transparent"></div>
+                <div class="weui-toast">
+                    <i class="weui-loading weui-icon_toast"></i>
+                    <p class="weui-toast__content" v-html="loading.txt"></p>
+                </div>
+            </div>
+            <!--按钮提示框-->
+            <!--BEGIN dialog2-->
+            <div class="js_dialog" id="iosDialog2" v-show="dialog.status">
+                <div class="weui-mask"></div>
+                <div class="weui-dialog">
+                    <div class="weui-dialog__bd">{{dialog.txt}}</div>
+                    <div class="weui-dialog__ft">
+                        <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary" @click="dialog.status = false">知道了</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 提示框，1000消失 -->
+            <div class="tipBox" v-show="alert.status">
+                <div class="tibBox_inner">
+                    <p v-html="alert.txt"></p>
+                </div>
+            </div>
     </div>
     <script src="js/zepto.min.js"></script>
     <script src="js/vue.min.js"></script>
@@ -45,15 +72,65 @@
             new Vue({
                 el: "#article",
                 data: {
-                    detailState:false
+                    URL:{
+                        getArticleList:'https://xnt.xhwxpos.com/pingan/weixin/Index/getArticleList'
+                    },
+                    article:[],
+                    loading: {        //加载中弹框
+                        status: false,
+                        txt: '加载中...'
+                    },
+                    dialog: {    //带按钮提示框
+                        status: false,
+                        txt: '这里是提示内容'
+                    },
+                    alert: {     //提示自动消失框
+                        status: false,
+                        txt: '这里是提示内容'
+                    },
                 },
                 methods: {
-                    init: function () {
-
+                    getArticleListFn:function(id){
+                        this.loading.status = true;
+                        $.ajax({
+                            url:this.URL['getArticleList'],
+                            dataType: 'json',
+                            type: 'get',
+                            data: {id:id},
+                            async: true,  //异步请求
+                            success: function (res) {
+                                This.loading.status = false;
+                                if(res.status == 0){
+                                    This.article = res.article;
+                                }else{
+                                    This.alertHandle(res.msg)
+                                }
+                            },
+                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                This.alertHandle('服务出错了')
+                                console.log(XMLHttpRequest)
+                            }
+                        })
+                    },
+                    getQueryString: function (name) {
+                        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+                        var r = window.location.search.substr(1).match(reg);
+                        if (r != null) return unescape(r[2]);
+                        return null;
+                    },
+                    alertHandle:function(msg){
+                        var This = this;
+                        this.alert.status = true;
+                        this.alert.txt = msg;
+                        setTimeout(function(){
+                            This.alert.status = false;
+                            This.alert.txt = '';
+                        },1500)
                     }
                 },
                 mounted: function () {
-                    this.init();
+                    let id = this.getQueryString('id');
+                    this.getArticleListFn(id);
                 }
             })
         })

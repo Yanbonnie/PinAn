@@ -27,6 +27,7 @@ img{
 }
 
 .index_page{
+    padding-bottom: REM(120);
     .panel{
         background: #fff;
         margin-bottom:REM(20);
@@ -43,7 +44,7 @@ img{
             justify-content: space-around;
             align-items: center;
             padding: REM(10) 0 REM(30);
-            div{
+            a{
                 flex-grow: 1;
                 text-align: center;
                 img{
@@ -69,6 +70,9 @@ img{
                 font-size: REM(24);
                 color: #666666;
             }
+        }
+        .banner{
+            width: 100%;
         }
     }
     .panel4{
@@ -154,8 +158,11 @@ img{
         }
     }
 }
-
+.list{
+    padding-bottom: REM(120);
+}
 .listBox{
+
     ul{
         padding:0 REM(40);
         .flexBox{
@@ -181,7 +188,9 @@ img{
         }
     }
 }
-
+.article{
+    padding-bottom: REM(120);
+}
 .articleList{
     ul{
         padding: 0 REM(20);
@@ -281,7 +290,36 @@ img{
     }
 }
 
-
+.navBottom{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    border-top: 1px #f5f5f5 solid;
+    padding: REM(10) 0;
+    a{
+        flex-grow: 1;
+        text-align: center;
+        &.active{
+            span{
+                color: #f15922;
+            }
+        }
+        img{
+            width: REM(51);
+            height: REM(45);
+            margin: 0 auto;
+        }
+        span{
+            color: #000;
+            line-height: REM(40);
+        }
+    }
+}
 
 .sign_page_scrollBody::-webkit-scrollbar-track
 {

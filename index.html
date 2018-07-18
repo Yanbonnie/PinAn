@@ -36,12 +36,12 @@
             <div class="title">
                 <img src="./images/title2.png" alt="">
             </div>
-            <a class="banner">
+            <!--<a class="banner">
                 <img :src="./images/banner.jpg" alt="">
-            </a>
-            <!-- <a class="banner" :href="banner.url">
+            </a>-->
+            <a class="banner" :href="banner.url">
                 <img :src="banner.logo" alt="">
-            </a> -->
+            </a>
             <div class="flexBox">
                 <a :href="item.url" v-for="(item,index) in car_list" :key="index">
                     <img :src="item.logo" alt="">

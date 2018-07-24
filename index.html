@@ -36,12 +36,6 @@
             <div class="title">
                 <img src="./images/title2.png" alt="">
             </div>
-            <!--<a class="banner">
-                <img :src="./images/banner.jpg" alt="">
-            </a>-->
-            <a class="banner" :href="banner.url">
-                <img :src="banner.logo" alt="">
-            </a>
             <div class="flexBox">
                 <a :href="item.url" v-for="(item,index) in car_list" :key="index">
                     <img :src="item.logo" alt="">
@@ -54,10 +48,6 @@
                 <a>
                     <img src="./images/tab3.png" alt="">
                     <p>新车分期</p>
-                </a>
-                <a>
-                    <img src="./images/tab4.png" alt="">
-                    <p>积分体系</p>
                 </a> -->
             </div>
         </div>
@@ -208,7 +198,7 @@
                     food_list1:[],     //精选美食数组
                     food_list2:[],     //精选美食数组
                     city_list:[],     //城市优惠数组
-                    banner:'',
+                    // banner:'',
                     loading: {        //加载中弹框
                         status: false,
                         txt: '加载中...'
@@ -242,7 +232,7 @@
                                     This.food_list1 = res.food_list.slice(0,2);
                                     This.food_list2 = res.food_list.slice(2);
                                     This.city_list = res.city_list;
-                                    This.banner = res.banner;
+                                    // This.banner = res.banner;
                                 }else{
                                     This.alertHandle(res.msg)
                                 }

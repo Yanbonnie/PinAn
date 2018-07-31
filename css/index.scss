@@ -149,13 +149,13 @@ img{
         .flexBox{
             flex-wrap: wrap;
             padding: 0;
-            &>div{
+            &>a{
                 flex-basis: 25%;
                 box-sizing: border-box;
                 border-left: 1px #fff solid;
                 border-bottom: 1px #fff solid;
                 position: relative;
-                p{
+                p{ 
                     position: absolute;
                     top: 50%;
                     left: 0;
